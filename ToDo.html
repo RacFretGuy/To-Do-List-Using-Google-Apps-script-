@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?!= include('stylesheet'); ?>
+    <?!= include('javascript'); ?>
+  </head>
+  <body onload = "loadData()" >
+    <div id="myDIV" class="header">
+      <h2 style="margin:5px">My To Do List</h2>
+      <input type="text" id="newTag-input" placeholder="Title...">
+      <select name="type" id="newTag-Type">
+        <option value="PROFESSIONAL" >Professional</option>
+        <option value="LEARNING" >Learning</option>
+      </select>
+      <span onclick="createNewTag()" class="addBtn">Add</span>
+    </div>
+
+    <button id="pending-btn" onclick="toggleTaskDisplay('pending')">pending task</button>
+    <button id="completed-btn" onclick="toggleTaskDisplay('completed')">completed task</button>
+    
+    <ul id="pending-tasks" style="display:block"></ul>
+    <ul id="completed-tasks" style="display:none"></ul>
+  </body>
+</html>
