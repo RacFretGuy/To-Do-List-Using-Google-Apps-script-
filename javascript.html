@@ -1,0 +1,79 @@
+<script>
+  function loadData(){
+    google.script.run.withSuccessHandler(function(data) {
+      console.log(data);
+      var pendingUl = document.getElementById('pending-tasks');
+      var completedUl = document.getElementById('completed-tasks');
+      for(var i=0;i<data.length;i++) {
+        var li = createLiNode(data[i]);
+        if(!data[i].completedDate) {
+          pendingUl.appendChild(li);
+          li.appendChild(createCompleteButton(data[i].id));
+        } else {
+          completedUl.appendChild(li);
+        }
+      }
+    }).getData();
+  }
+
+  function createLiNode(todo) {
+    var li = document.createElement('li');
+    var textNode = document.createElement('span');
+    textNode.innerHTML = todo.tag;
+    textNode.id='tagText-' + todo.id;
+    textNode.contentEditable=true;
+    textNode.addEventListener('blur', function(event) {
+      // Get the id of span out
+      spanId=event.target.id;
+      spanId=spanId.split("-").pop();
+      google.script.run.updateTag(spanId, event.target.innerHTML);
+    });
+    
+    var tagNode = document.createElement('span');
+    tagNode.innerHTML=todo.tagType;
+
+    li.appendChild(textNode);
+    li.appendChild(tagNode);
+    li.id= "item-" + todo.id;
+    return li;
+  }
+
+  function createCompleteButton(id){
+    var button = document.createElement("button");
+    button.classList.add("mystyle");
+    button.innerHTML="Complete";
+    button.id="complete-" + id;
+    button.addEventListener('click', function(event) {
+      id = event.target.id;
+      id = id.split("-").pop(); 
+      google.script.run.withSuccessHandler(function(){
+        //remove complete button
+        document.getElementById(event.target.id).remove();
+        document.getElementById('completed-tasks').appendChild(document.getElementById('item-'+ id));
+      }).completeTask(id);
+    });
+    return button;
+  }
+
+  function createNewTag() {
+      var tag = document.getElementById('newTag-input').value;
+      var tagType = document.getElementById('newTag-Type').value;
+      console.log(tagType);
+      google.script.run.withSuccessHandler(function(data) {
+        var pendingUl = document.getElementById('pending-tasks');
+        var li = createLiNode(data);
+        pendingUl.appendChild(li);
+        li.appendChild(createCompleteButton(data.id));
+      }).createNewTag(tag,tagType);
+  }
+    
+  function toggleTaskDisplay(displayType) {
+    if(displayType === 'pending') {
+      document.getElementById('pending-tasks').style.display='block';
+      document.getElementById('completed-tasks').style.display='none';
+    } else {
+      document.getElementById('completed-tasks').style.display='block';
+      document.getElementById('pending-tasks').style.display='none';
+    }
+  }
+</script>
