@@ -1,0 +1,111 @@
+<style>
+body {
+  margin: 0;
+  min-width: 250px;
+  background: linear-gradient(to bottom right, #66ccff 0%, #ffcc00 76%);
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: linear-gradient(to bottom right, #66ccff 0%, #ff9933 76%);  ;
+  color: white;
+  font-family: verdana;
+  font-size: 18px;
+  transition: font-size 0.25s ease;
+  box-sizing: border-box;
+  
+  
+  
+  /* make the list items unselectable */
+  -webkit-transition:font-size 0.25s ease;
+  -moz-transition:font-size 0.25s ease;
+  -o-transition:font-size 0.25 ease;
+  -ms-transition:font-size 0.25 ease;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: background: linear-gradient(to bottom right, #66ccff 0%, #ff6600 76%);
+}
+
+
+/* Darker background-color on hover */
+ul li:hover {
+  text-decoration: none;
+  color:#080000 ;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #080000 ;
+  
+}
+
+
+/* Style the header */
+.header {
+  background-color: #080000 ;
+  padding-right: 25px 20px;
+  color: white;
+  text-align: centre;
+}
+
+
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding left: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #FFFFFF;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+
+/*style the "complete" button */
+.mystyle {
+  display: inline-block;
+	position: relative;
+	padding: 0;
+	line-height: normal;
+	margin-left: 90.1em;
+	cursor: pointer;
+	vertical-align: left;
+	text-align: center;
+	overflow: visible; / removes extra width in IE /
+}
+
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+</style>
